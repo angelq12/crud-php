@@ -1,45 +1,29 @@
-<?php
-	
-	require('conexion.php');
-	
-	$id=$_GET['id'];
-	
-	$query="SELECT usuario, contrasenia, email FROM usuarios WHERE id='$id'";
-	
-	$resultado=$mysqli->query($query);
-	
-	$row=$resultado->fetch_assoc();
-	
-?>
-
+<!doctype html>
 <html>
-	<head>
-		<title>Usuarios</title>
-	</head>
-	<body>
-		
-		<center><h1>Modificar Usuario</h1></center>
-		
-		<form name="modificar_usuario" method="POST" action="mod_usuario.php">
-			
-			<table width="50%">
-				<tr>
-					<input type="hidden" name="id" value="<?php echo $id; ?>">
-					<td width="20"><b>Usuario</b></td>
-					<td width="30"><input type="text" name="usuario" size="25" value="<?php echo $row['usuario']; ?>" /></td>
-				</tr>	
-				<tr>
-					<td><b>Password</b></td>
-					<td><input type="password" name="password" size="25" value="<?php echo $row['contrasenia']; ?>" /></td>
-				</tr>
-				<tr>
-					<td><b>Email</b></td>
-					<td><input type="text" name="email" size="25" value="<?php echo $row['email']; ?>" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><center><input type="submit" name="Guardar" value="Guardar" /></center></td>
-				</tr>
-			</table>
-		</form>
-	</body>
-</html>	
+<head>
+<meta charset="utf-8">
+<title>GUARDAR</title>
+</head>
+
+<body>
+		<center>
+    <?php 
+			$id=$_REQUEST['Id'];
+			include("conexion.php");//primero incluimos el archivo de conexion
+			$query="SELECT *FROM usuarios WHERE id='$id'";
+			$resultado=$conexion->query($query);
+			$row=$resultado->fetch_assoc();
+		?>
+    	<form action="modificar_proceso.php?Id=<?php  echo $row['id'];?>" method="post">
+         
+        
+        <br/><br/><br/>
+        
+  <input type="text" required name="nombre" placeholder="Nombre..."  value="<?php echo $row["nombre"]; ?>"/><br/><br/>
+  <input type="text" required name="apellido" placeholder="Apellido..."  value="<?php echo $row["apellido"]; ?>"/><br/><br/>
+  <input type="text" required name="correo" placeholder="Correo..."  value="<?php echo $row["correo"]; ?>"/><br/><br/>
+  <input type="submit" value="Aceptar"/>
+        </form>
+    </center>
+</body>
+</html>

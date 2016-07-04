@@ -1,10 +1,10 @@
 <?php
 include("conexion.php");
-$id=$_REQUEST['Id'];
+$nombre=$_POST["nombre"];
+$apellido=$_POST["apellido"];
+$correo=$_POST["correo"];
 
-
-
-$query="DELETE  FROM usuarios  WHERE id='$id'";
+$query="INSERT INTO usuarios(nombre,apellido,correo) VALUES ('$nombre','$apellido','$correo')";
 
 $resultado=$conexion->query($query);//ponemos nuestra instruccion que tenemos en la variable query
 

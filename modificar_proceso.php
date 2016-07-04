@@ -1,10 +1,11 @@
 <?php
-include("conexion.php");
 $id=$_REQUEST['Id'];
+include("conexion.php");
+$nombre=$_POST["nombre"];
+$apellido=$_POST["apellido"];
+$correo=$_POST["correo"];
 
-
-
-$query="DELETE  FROM usuarios  WHERE id='$id'";
+$query="UPDATE usuarios SET nombre='$nombre',apellido='$apellido',correo='$correo' WHERE id='$id'";
 
 $resultado=$conexion->query($query);//ponemos nuestra instruccion que tenemos en la variable query
 
